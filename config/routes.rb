@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
-  get({"/products/new" => "products#new", as: :new_product})
-  post({"/products" => "products#create", as: :products})
-  get({"/products/:id" => "products#show", as: :product})
+  # get({"/products/new" => "products#new", as: :new_product})
+  # post({"/products" => "products#create", as: :products})
+  # get({"/products/:id" => "products#show", as: :product})
+
+  resources :products, only: [:new, :create, :show] do
+    resources :comments, only: :create
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,3 +1,18 @@
 <h1><%= @product.title %></h1>
 <p><%= number_to_currency(@product.price, {unit: "£"}) %></p>
 <p><%= @product.description %></p>
+
+<%= @comment.errors.full_messages.join(", ") %>
+<h2>Create a comments</h2>
+<%= form_for [@product, @comment] do |f| %>
+  <%= f.label :body  %>
+  <%= f.text_area :body  %>
+  <%= f.submit %>
+<% end %>
+
+<% @product.comments.each do |comment| %>
+  <div>
+    <%= comment.body %>
+  </div>
+  <hr>
+<% end %>

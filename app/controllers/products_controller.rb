@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @product = Product.find params[:id]
   end
 
