@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :users, only: [:new, :create]
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
+
   # get({"/products/new" => "products#new", as: :new_product})
   # post({"/products" => "products#create", as: :products})
   # get({"/products/:id" => "products#show", as: :product})
@@ -7,6 +12,8 @@ Rails.application.routes.draw do
   resources :products, only: [:new, :create, :show] do
     resources :comments, only: :create
   end
+
+  root "products#new"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
