@@ -6,9 +6,10 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product_params = params.require(:product).permit([:title, :price, :description])
+    product_params = params.require(:product).permit([:title, :price,
+                                              :description, {category_ids: []}])
     @product       = Product.new product_params
-    @product.user  = current_user 
+    @product.user  = current_user
     if @product.save
       redirect_to product_path(@product)
     else

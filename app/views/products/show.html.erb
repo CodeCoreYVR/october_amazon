@@ -1,7 +1,8 @@
 <h1><%= @product.title %></h1>
 <p><%= number_to_currency(@product.price, {unit: "£"}) %></p>
 <p><%= @product.description %></p>
-
+<!-- <p><%= @product.categories.map {|c| c.name }.join(", ")  %></p> -->
+<p><%= @product.categories.map(&:name).join(", ")  %></p>
 <%= @comment.errors.full_messages.join(", ") %>
 <h2>Create a comments</h2>
 <%= form_for [@product, @comment] do |f| %>
