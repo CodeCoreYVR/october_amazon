@@ -1,0 +1,6 @@
+<%= form_for [@product, @comment], remote: true do |f| %>
+  <%= @comment.errors.full_messages.join(", ") %>
+  <%= f.label :body  %>
+  <%= f.text_area :body  %>
+  <%= f.submit %>
+<% end %>

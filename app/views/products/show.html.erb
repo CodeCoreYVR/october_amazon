@@ -3,17 +3,11 @@
 <p><%= @product.description %></p>
 <!-- <p><%= @product.categories.map {|c| c.name }.join(", ")  %></p> -->
 <p><%= @product.categories.map(&:name).join(", ")  %></p>
-<%= @comment.errors.full_messages.join(", ") %>
 <h2>Create a comments</h2>
-<%= form_for [@product, @comment] do |f| %>
-  <%= f.label :body  %>
-  <%= f.text_area :body  %>
-  <%= f.submit %>
-<% end %>
+<%= render "/comments/form" %>
 
-<% @product.comments.each do |comment| %>
-  <div>
-    <%= comment.body %>
-  </div>
-  <hr>
-<% end %>
+<div id="comments">
+  <% @product.comments.each do |c| %>
+    <%= render "/comments/comment", comment: c %>
+  <% end %>
+</div>

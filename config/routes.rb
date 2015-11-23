@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # get({"/products/:id" => "products#show", as: :product})
 
   resources :products, only: [:new, :create, :show] do
-    resources :comments, only: :create
+    resources :comments, only: [:create, :destroy]
   end
 
   root "products#new"
